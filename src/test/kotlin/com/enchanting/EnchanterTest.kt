@@ -26,7 +26,7 @@ class EnchanterTest {
 
         enchanter.enchant(weapon)
 
-        assertThat(weapon.magicDamage()).isEqualTo("+5 Fire damage")
+        assertThat(weapon.magicDamage).isEqualTo("+5 Fire damage")
         assertThat(weapon.name).isEqualTo("Inferno Hammer of God")
     }
 
@@ -37,7 +37,7 @@ class EnchanterTest {
 
         enchanter.enchant(weapon)
 
-        assertThat(weapon.magicDamage()).isEqualTo("+5 Ice damage")
+        assertThat(weapon.magicDamage).isEqualTo("+5 Ice damage")
         assertThat(weapon.name).isEqualTo("Icy Hammer of God")
     }
 
@@ -47,7 +47,7 @@ class EnchanterTest {
 
         enchanter.enchant(enchantedWeapon)
 
-        assertThat(enchantedWeapon.magicDamage()).isEqualTo("")
+        assertThat(enchantedWeapon.magicDamage).isEqualTo("")
         assertThat(enchantedWeapon.name).isEqualTo("Hammer of God")
     }
 
