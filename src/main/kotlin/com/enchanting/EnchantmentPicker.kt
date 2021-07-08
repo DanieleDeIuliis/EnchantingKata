@@ -1,11 +1,14 @@
 package com.enchanting
 
+import com.enchanting.Enchantment.FAILURE
+import com.enchanting.Enchantment.FIRE
+
 class EnchantmentPicker(private val enchantmentResult: EnchantmentResult) {
     fun next(): Enchantment {
         return if(enchantmentResult.isSuccessful()) {
-            Enchantment("+5 Fire damage","Inferno")
+            FIRE
         } else {
-            Enchantment("","")
+            FAILURE
         }
     }
 

@@ -1,5 +1,6 @@
 package com.enchanting
 
+import com.enchanting.Enchantment.*
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
@@ -10,7 +11,7 @@ class EnchanterTest {
 
     private lateinit var enchanter: Enchanter
     private lateinit var weapon: Weapon
-    private var enchantedWeapon: Weapon = Weapon("Hammer of God", Enchantment(bonus = "+5 Fire damage", prefix = "Inferno"))
+    private var enchantedWeapon: Weapon = Weapon("Hammer of God", FIRE)
     private val enchantmentPicker: EnchantmentPicker = mockk()
 
     @BeforeEach
@@ -21,8 +22,7 @@ class EnchanterTest {
 
     @Test
     fun `enchanting a weapon, it gets a fire enchantment`() {
-        val fireEnchantment = Enchantment(bonus = "+5 Fire damage", prefix = "Inferno")
-        every { enchantmentPicker.next() } returns fireEnchantment
+        every { enchantmentPicker.next() } returns FIRE
 
         enchanter.enchant(weapon)
 
@@ -32,8 +32,7 @@ class EnchanterTest {
 
     @Test
     fun `enchanting a weapon, it gets an icy enchantment`() {
-        val icyEnchantment = Enchantment(bonus = "+5 Ice damage", prefix = "Icy")
-        every { enchantmentPicker.next() } returns icyEnchantment
+        every { enchantmentPicker.next() } returns ICE
 
         enchanter.enchant(weapon)
 
@@ -43,7 +42,7 @@ class EnchanterTest {
 
     @Test
     fun `when an enchantment fails, it removes magic attributes`() {
-        every { enchantmentPicker.next() } returns failedEnchantment()
+        every { enchantmentPicker.next() } returns FAILURE
 
         enchanter.enchant(enchantedWeapon)
 
@@ -51,5 +50,4 @@ class EnchanterTest {
         assertThat(enchantedWeapon.name).isEqualTo("Hammer of God")
     }
 
-    private fun failedEnchantment() = Enchantment("", "")
 }

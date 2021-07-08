@@ -1,5 +1,6 @@
 package com.enchanting
 
+import com.enchanting.Enchantment.FAILURE
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
@@ -16,7 +17,7 @@ class EnchantmentPickerTest {
 
         val enchantment = enchantmentPicker.next()
 
-        assertThat(enchantment).isNotEqualTo(Enchantment("", ""))
+        assertThat(enchantment).isNotEqualTo(FAILURE)
     }
 
     @Test
@@ -25,6 +26,6 @@ class EnchantmentPickerTest {
 
         val enchantment = enchantmentPicker.next()
 
-        assertThat(enchantment).isEqualTo(Enchantment("", ""))
+        assertThat(enchantment).isEqualTo(FAILURE)
     }
 }
