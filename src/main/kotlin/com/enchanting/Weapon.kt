@@ -7,5 +7,4 @@ class Weapon(name : String, var enchantment: Enchantment = Enchantment("", "")){
     val magicDamage: String
         get() = enchantment.bonus
 
-
 }

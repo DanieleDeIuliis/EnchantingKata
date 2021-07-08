@@ -1,8 +1,12 @@
 package com.enchanting
 
-class EnchantmentPicker {
+class EnchantmentPicker(private val enchantmentResult: EnchantmentResult) {
     fun next(): Enchantment {
-        TODO("Not yet implemented")
+        return if(enchantmentResult.isSuccessful()) {
+            Enchantment("+5 Fire damage","Inferno")
+        } else {
+            Enchantment("","")
+        }
     }
 
 }
