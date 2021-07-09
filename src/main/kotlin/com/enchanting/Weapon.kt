@@ -1,3 +1,6 @@
 package com.enchanting
 
-class Weapon(var elementalAttribute: ElementalAttribute? = null)
+class Weapon(name: String, var elementalAttribute: ElementalAttribute? = null) {
+    var name = name
+        get() = "${elementalAttribute?.prefix} $field".trim()
+}
