@@ -2,10 +2,15 @@ package com.enchanting
 
 import com.enchanting.ElementalAttribute.*
 
-class MagicBook {
+class MagicBook(private val spell: Spell) {
 
     fun enchant(weapon: Weapon) {
-        weapon.elementalAttribute = FIRE
+        if(spell.isSucceeded()) {
+            weapon.elementalAttribute = FIRE
+            return
+        }
+
+        weapon.elementalAttribute = null
     }
 
 }
