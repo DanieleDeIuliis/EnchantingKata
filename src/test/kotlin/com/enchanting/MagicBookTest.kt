@@ -13,7 +13,7 @@ class MagicBookTest {
     @Test
     fun `enchant a weapon with the magic book gives a fire attribute`() {
         val weapon = Weapon("Staff")
-        every { spell.isSucceeded() } returns true
+        every { spell.castOn(weapon) } returns FIRE
         val magicBook = MagicBook(spell)
 
         magicBook.enchant(weapon)
@@ -24,7 +24,7 @@ class MagicBookTest {
     @Test
     fun `enchanting a weapon changes the name with a prefix`() {
         val weapon = Weapon("Staff")
-        every { spell.isSucceeded() } returns true
+        every { spell.castOn(weapon) } returns FIRE
         val magicBook = MagicBook(spell)
 
         magicBook.enchant(weapon)
@@ -35,7 +35,7 @@ class MagicBookTest {
     @Test
     fun `enchanting a weapon removes the old enchantment`() {
         val weapon = Weapon("Staff", ICE)
-        every { spell.isSucceeded() } returns true
+        every { spell.castOn(weapon) } returns FIRE
         val magicBook = MagicBook(spell)
 
         magicBook.enchant(weapon)
@@ -46,11 +46,22 @@ class MagicBookTest {
     @Test
     fun `when an enchantment fails, it removes the current one`() {
         val weapon = Weapon("Staff", ICE)
-        every { spell.isSucceeded() } returns false
+        every { spell.castOn(weapon) } returns null
 
         MagicBook(spell).enchant(weapon)
 
         assertThat(weapon.elementalAttribute).isNull()
+    }
+
+    @Test
+    fun `get a random enchantment`() {
+        val weapon = Weapon("Staff", ICE)
+        every { spell.castOn(weapon) } returns LIFESTEAL
+        val magicBook = MagicBook(spell)
+
+        magicBook.enchant(weapon)
+
+        assertThat(weapon.elementalAttribute).isEqualTo(LIFESTEAL)
     }
 }
 

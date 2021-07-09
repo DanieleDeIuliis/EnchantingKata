@@ -1,7 +1,7 @@
 package com.enchanting
 
 class Spell {
-    fun isSucceeded(): Boolean {
+    fun castOn(weapon: Weapon): ElementalAttribute? {
         TODO("Not yet implemented")
     }
 
